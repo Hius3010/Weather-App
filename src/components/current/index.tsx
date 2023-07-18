@@ -1,25 +1,14 @@
+import { WeatherItem } from "@/model";
 import { getCurrentDate } from "@/ultis/currentDate";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 
 interface CurrentProps {
-  data: {
-    current: {
-      condition: {
-        icon: string;
-        text: string;
-      };
-      temp_c: number;
-    };
-    location: {
-      name: string;
-      country: string;
-    };
-  };
+  data?: WeatherItem;
 }
 
 const Current = ({ data }: CurrentProps) => {
   const currentDate = getCurrentDate();
-  const weatherIcon = data.current.condition.icon;
+  const weatherIcon = data?.current?.condition?.icon;
   return (
     <div
       className="flex flex-col mb-8 md:mb-0
@@ -42,10 +31,10 @@ const Current = ({ data }: CurrentProps) => {
       </div>
       <div>
         <p className="text-5xl text-white">
-          {data.current.temp_c.toFixed()}
+          {data?.current?.temp_c?.toFixed()}
           <span>°</span>
         </p>
-        <span className="text-white">{data.current.condition.text}</span>
+        <span className="text-white">{data?.current?.condition?.text}</span>
       </div>
       <div>
         <div
@@ -54,7 +43,7 @@ const Current = ({ data }: CurrentProps) => {
         >
           <HiOutlineLocationMarker />
           <span>
-            {data.location.name}, {data.location.country}
+            {data?.location?.name}, {data?.location?.country}
           </span>
         </div>
       </div>
